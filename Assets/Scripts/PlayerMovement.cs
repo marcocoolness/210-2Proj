@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private BoxCollider2D bodysensor;
+    private bool interactable = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Interact(InputAction.CallbackContext context)
     {
-//        Interactt();
+        interactable = true;
     }
 
 }
