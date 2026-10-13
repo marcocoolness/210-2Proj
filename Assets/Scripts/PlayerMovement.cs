@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private BoxCollider2D bodysensor;
-    private bool interactable = false;
+    public bool interactable = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,7 +30,12 @@ public class PlayerMovement : MonoBehaviour
     public void Interact(InputAction.CallbackContext context)
     {
         interactable = true;
+        StartCoroutine(DelayedAction());
     }
-
+    IEnumerator DelayedAction()
+    {
+        yield return new WaitForSeconds(.1f);
+        interactable = false;
+    }
 }
 
