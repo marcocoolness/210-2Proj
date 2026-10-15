@@ -35,5 +35,11 @@ public class Player : MonoBehaviour
                 SceneManager.LoadScene("DownStairs");
                 Debug.Log("Down");
             }
+        if (collision.gameObject.CompareTag("BedRoom"))
+            {
+            //Destroy(this.gameObject);
+            SceneManager.LoadScene("BedRoom");
+            Debug.Log("Bed");
+            }
     }
 }
