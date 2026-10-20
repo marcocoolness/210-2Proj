@@ -6,6 +6,7 @@ public class collidinginteractable : MonoBehaviour
     BoxCollider2D Collide;
     GameObject player;
     PlayerMovement playerid;
+    menuscript menu1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +16,11 @@ public class collidinginteractable : MonoBehaviour
         {
             playerid=player.GetComponent<PlayerMovement>();
         }
+        if (player!=null)
+        {
+            playerid=player.GetComponent<PlayerMovement>();
+        }
+        menu1= GetComponent<menuscript>();
     }
 
     // Update is called once per frame
@@ -27,7 +33,8 @@ public class collidinginteractable : MonoBehaviour
     {
         if (other.gameObject==player && playerid.interactable)
         {
-           
+           menu1.MoveIn();
+           Debug.Log("Moved");
         }
     }
 }

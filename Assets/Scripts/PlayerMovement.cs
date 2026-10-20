@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         interactable = true;
         StartCoroutine(DelayedAction());
+        Debug.Log("Interacted");
     }
     IEnumerator DelayedAction()
     {
