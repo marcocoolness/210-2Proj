@@ -35,11 +35,11 @@ public class Player : MonoBehaviour
                 SceneManager.LoadScene("DownStairs");
                 Debug.Log("Down");
             }
-        if (collision.gameObject.CompareTag("BedRoom"))
+        if (collision.gameObject.CompareTag("Outside"))
             {
             //Destroy(this.gameObject);
-            SceneManager.LoadScene("BedRoom");
-            Debug.Log("Bed");
+            SceneManager.LoadScene("Outside");
+            Debug.Log("out");
             }
     }
 }
