@@ -10,11 +10,19 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private BoxCollider2D bodysensor;
     public bool interactable = false;
+    GameObject PauseHandle;
+    gamepause pause;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bodysensor = GetComponent<BoxCollider2D>();
+        PauseHandle=GameObject.Find("GamePauseHandle");
+        if (PauseHandle!=null)
+        {
+            pause=PauseHandle.GetComponent<gamepause>();
+        }
     }
 
     // Update is called once per frame
@@ -25,7 +33,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if(!pause.GAME_PAUSE)
+       {
         moveInput = context.ReadValue<Vector2>();
+       }
     }
     public void Interact(InputAction.CallbackContext context)
     {

@@ -6,7 +6,12 @@ public class collidinginteractable : MonoBehaviour
     BoxCollider2D Collide;
     GameObject player;
     PlayerMovement playerid;
+    GameObject Canva;
     menuscript menu1;
+    bool incollision=false;
+    GameObject PauseHandle;
+    gamepause pause;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,25 +21,41 @@ public class collidinginteractable : MonoBehaviour
         {
             playerid=player.GetComponent<PlayerMovement>();
         }
-        if (player!=null)
+        Canva=GameObject.Find("Panel");
+        if (Canva!=null)
         {
-            playerid=player.GetComponent<PlayerMovement>();
+            menu1=Canva.GetComponent<menuscript>();
         }
-        menu1= GetComponent<menuscript>();
+        PauseHandle=GameObject.Find("GamePauseHandle");
+        if (PauseHandle!=null)
+        {
+            pause=PauseHandle.GetComponent<gamepause>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject==player && playerid.interactable)
-        {
+       if(incollision && playerid.interactable && !pause.GAME_PAUSE)
+       {
+        pause.GAME_PAUSE=true;
            menu1.MoveIn();
            Debug.Log("Moved");
+       }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject==player)
+        {
+            incollision=true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject==player)
+        {
+           incollision=false;
         }
     }
 }

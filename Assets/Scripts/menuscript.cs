@@ -5,8 +5,9 @@ public class menuscript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     RectTransform position;
-    float moveinypos = 10f;
+    float moveinypos = 12f;
     float moveoutypos = 90f;
+    Vector2 posref;
     void Start()
     {
         position = GetComponent<RectTransform>();
@@ -18,30 +19,34 @@ public class menuscript : MonoBehaviour
     // Update is called once per frame
     public void MoveIn()
     {
-        do
-        {
-            StartCoroutine(DelayedAction());
-        }
-        while (position.up.y <= moveinypos);//transform
+          StartCoroutine(DelayedAction());
+          //transform
     }
     public void MoveOut()
     {
-        do
-        {
-            StartCoroutine(DelayedAction2());
-        }
-        while (position.up.y >= moveinypos);//transform
+          StartCoroutine(DelayedAction2());
+
     }
 
     IEnumerator DelayedAction()
     {
+        posref = position.anchoredPosition;
+        do
+        {
         yield return new WaitForSeconds(.1f);
         position.anchoredPosition += new Vector2(0f, -.3f);// transform.position
+        }
+        while (posref.y >= moveinypos);
     }
     IEnumerator DelayedAction2()
     {
-        yield return new WaitForSeconds(.1f);
+        posref = position.anchoredPosition;
+        do
+        {
+           yield return new WaitForSeconds(.1f);
         position.anchoredPosition += new Vector2(0f, .3f);// transform.position
+        }
+        while (posref.y <= moveoutypos);//transform
     }
 }
 
