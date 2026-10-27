@@ -5,8 +5,8 @@ public class menuscript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     RectTransform position;
-    float moveinypos = 12f;
-    float moveoutypos = 90f;
+    float moveinypos = 0f;
+    float moveoutypos = 80f;
     Vector2 posref;
     void Start()
     {
@@ -33,8 +33,9 @@ public class menuscript : MonoBehaviour
         posref = position.anchoredPosition;
         do
         {
-        yield return new WaitForSeconds(.1f);
-        position.anchoredPosition += new Vector2(0f, -.3f);// transform.position
+        yield return new WaitForSeconds(.01f);
+        position.anchoredPosition += new Vector2(0f, -.6f);// transform.position
+        posref = position.anchoredPosition;
         }
         while (posref.y >= moveinypos);
     }
@@ -43,8 +44,9 @@ public class menuscript : MonoBehaviour
         posref = position.anchoredPosition;
         do
         {
-           yield return new WaitForSeconds(.1f);
-        position.anchoredPosition += new Vector2(0f, .3f);// transform.position
+           yield return new WaitForSeconds(.01f);
+        position.anchoredPosition += new Vector2(0f, .6f);// transform.position
+        posref = position.anchoredPosition;
         }
         while (posref.y <= moveoutypos);//transform
     }
