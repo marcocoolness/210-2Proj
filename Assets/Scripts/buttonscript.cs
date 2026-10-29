@@ -21,8 +21,7 @@ public class buttonscript : MonoBehaviour
     }
     public void Clicked()
     {
-        //int Integer = refHead.optionScript;
-        //Integer=Option;
+        refHead.SetSceneVar(Option);
         SceneManager.LoadScene("OutsideScene");
     }
 }

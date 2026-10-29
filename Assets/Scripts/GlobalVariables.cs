@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GlobalVariables : MonoBehaviour
 {
-    public static int optionScript = 0;
+    public int optionScript = 0;
     void Start()
     {
         DontDestroyOnLoad(transform.gameObject);
@@ -16,5 +16,9 @@ public class GlobalVariables : MonoBehaviour
     public int Reference()
     {
         return optionScript;
+    }
+    public void SetSceneVar(int Scene)
+    {
+        optionScript=Scene;
     }
 }

@@ -1,46 +1,68 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class popup : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     RectTransform position;
-    float moveinypos = -30f;
-    float moveoutypos = -50f;
+    float moveinypos = -40f;
+    float moveoutypos = -80f;
+    Vector2 posref;
+    TMP_Text text;
+    string textToType="Who would you like to meet with?";
+
     void Start()
     {
         position = GetComponent<RectTransform>();
-        Debug.Log(position.anchoredPosition);
-        position.anchoredPosition = new Vector2(position.right.x, moveoutypos);
-        //transform.position=
+        posref=position.anchoredPosition;//Debug.Log(position.anchoredPosition);
+        position.anchoredPosition = new Vector2(posref.x, moveoutypos);
+        text = GetComponentInChildren<TMP_Text>();
     }
 
     // Update is called once per frame
     public void MoveIn()
     {
-        do
-        {
-            StartCoroutine(DelayedAction());
-        }
-        while (position.up.y <= moveinypos);//transform
+          StartCoroutine(DelayedAction());
+          //transform
     }
     public void MoveOut()
     {
-        do
-        {
-            StartCoroutine(DelayedAction2());
-        }
-        while (position.up.y >= moveinypos);//transform
+          StartCoroutine(DelayedAction2());
+
     }
 
     IEnumerator DelayedAction()
     {
-        yield return new WaitForSeconds(.1f);
-        position.anchoredPosition += new Vector2(0f, -.3f);// transform.position
+        posref = position.anchoredPosition;
+        do
+        {
+        yield return new WaitForSeconds(.01f);
+        position.anchoredPosition += new Vector2(0f, .6f);// transform.position
+        posref = position.anchoredPosition;
+        }
+        while (posref.y <= moveinypos);
+        position.anchoredPosition = new Vector2(posref.x, moveinypos);
     }
     IEnumerator DelayedAction2()
     {
-        yield return new WaitForSeconds(.1f);
-        position.anchoredPosition += new Vector2(0f, .3f);// transform.position
+        posref = position.anchoredPosition;
+        do
+        {
+           yield return new WaitForSeconds(.01f);
+        position.anchoredPosition += new Vector2(0f, -.6f);// transform.position
+        posref = position.anchoredPosition;
+        }
+        while (posref.y >= moveoutypos);//transform
+        position.anchoredPosition = new Vector2(posref.x, moveoutypos);
+        StartCoroutine(TypeText());
+    }
+    IEnumerator TypeText() {
+        string buffer = "";
+        foreach (char c in textToType) {
+            buffer += c;
+            text.text = buffer;
+            yield return new WaitForSeconds(.05f);
+        }
     }
 }

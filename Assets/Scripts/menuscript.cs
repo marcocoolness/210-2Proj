@@ -5,14 +5,14 @@ public class menuscript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     RectTransform position;
-    float moveinypos = 0f;
+    float moveinypos = 12f;
     float moveoutypos = 80f;
     Vector2 posref;
     void Start()
     {
         position = GetComponent<RectTransform>();
-        Debug.Log(position.anchoredPosition);
-        position.anchoredPosition = new Vector2(position.right.x, moveoutypos);
+        posref=position.anchoredPosition;//Debug.Log(position.anchoredPosition);
+        position.anchoredPosition = new Vector2(posref.x, moveoutypos);
         //transform.position=
     }
 
@@ -38,6 +38,7 @@ public class menuscript : MonoBehaviour
         posref = position.anchoredPosition;
         }
         while (posref.y >= moveinypos);
+        position.anchoredPosition = new Vector2(posref.x, moveinypos);
     }
     IEnumerator DelayedAction2()
     {
@@ -49,6 +50,7 @@ public class menuscript : MonoBehaviour
         posref = position.anchoredPosition;
         }
         while (posref.y <= moveoutypos);//transform
+        position.anchoredPosition = new Vector2(posref.x, moveoutypos);
     }
 }
 

@@ -4,32 +4,37 @@ using System.Collections;
 public class collidinginteractable : MonoBehaviour
 {
     BoxCollider2D Collide;
-    GameObject player;
     PlayerMovement playerid;
-    GameObject Canva;
+    GameObject HiArcRef;
+    GameObject player;
     menuscript menu1;
+    popup pop1;
     bool incollision=false;
-    GameObject PauseHandle;
     gamepause pause;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Collide= GetComponent<BoxCollider2D>();
-        player= GameObject.Find("Player");
-        if (player!=null)
+        HiArcRef=player= GameObject.Find("Player");
+        if (HiArcRef!=null)
         {
-            playerid=player.GetComponent<PlayerMovement>();
+            playerid=HiArcRef.GetComponent<PlayerMovement>();
         }
-        Canva=GameObject.Find("Panel");
-        if (Canva!=null)
+        HiArcRef=GameObject.Find("Panel");
+        if (HiArcRef!=null)
         {
-            menu1=Canva.GetComponent<menuscript>();
+            menu1=HiArcRef.GetComponent<menuscript>();
         }
-        PauseHandle=GameObject.Find("GamePauseHandle");
-        if (PauseHandle!=null)
+        HiArcRef=GameObject.Find("Panel2");
+        if (HiArcRef!=null)
         {
-            pause=PauseHandle.GetComponent<gamepause>();
+            pop1=HiArcRef.GetComponent<popup>();
+        }
+        HiArcRef=GameObject.Find("GamePauseHandle");
+        if (HiArcRef!=null)
+        {
+            pause=HiArcRef.GetComponent<gamepause>();
         }
     }
 
@@ -40,6 +45,7 @@ public class collidinginteractable : MonoBehaviour
        {
         pause.GAME_PAUSE=true;
            menu1.MoveIn();
+           pop1.MoveIn();
            Debug.Log("Moved");
        }
     }
