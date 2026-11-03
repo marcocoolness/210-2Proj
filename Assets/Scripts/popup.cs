@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class popup : MonoBehaviour
 {
@@ -10,14 +11,31 @@ public class popup : MonoBehaviour
     float moveoutypos = -80f;
     Vector2 posref;
     TMP_Text text;
-    string textToType="Who would you like to meet with?";
+    PlayerMovement playerid;
+    GameObject HiArcRef;
+    string[] textToType11={"Who would you like to meet with?"};
 
     void Start()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
         position = GetComponent<RectTransform>();
         posref=position.anchoredPosition;//Debug.Log(position.anchoredPosition);
         position.anchoredPosition = new Vector2(posref.x, moveoutypos);
         text = GetComponentInChildren<TMP_Text>();
+        if (sceneName == "OutsideScene")
+        {
+            textToType11[0]="Message1";
+            textToType11[1]="Message1";
+            textToType11[2]="Message1";
+            textToType11[3]="Message1";
+            textToType11[4]="Message1";
+        HiArcRef= GameObject.Find("Player");
+        if (HiArcRef!=null)
+        {
+            playerid=HiArcRef.GetComponent<PlayerMovement>();
+        }
+        }
     }
 
     // Update is called once per frame
@@ -43,6 +61,7 @@ public class popup : MonoBehaviour
         }
         while (posref.y <= moveinypos);
         position.anchoredPosition = new Vector2(posref.x, moveinypos);
+        StartCoroutine(TypeText(textToType11));
     }
     IEnumerator DelayedAction2()
     {
@@ -55,14 +74,21 @@ public class popup : MonoBehaviour
         }
         while (posref.y >= moveoutypos);//transform
         position.anchoredPosition = new Vector2(posref.x, moveoutypos);
-        StartCoroutine(TypeText());
     }
-    IEnumerator TypeText() {
-        string buffer = "";
+    IEnumerator TypeText(string[] textref) {
+   
+        foreach (string textToType in textref){
+      string buffer = "";   
         foreach (char c in textToType) {
             buffer += c;
             text.text = buffer;
             yield return new WaitForSeconds(.05f);
+        }
+        do
+        {
+           yield return new WaitForSeconds(.01f); 
+        }
+        while (!playerid.interactable);
         }
     }
 }
