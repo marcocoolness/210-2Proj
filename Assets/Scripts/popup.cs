@@ -13,7 +13,10 @@ public class popup : MonoBehaviour
     TMP_Text text;
     PlayerMovement playerid;
     GameObject HiArcRef;
+    float targetAlpha = 0f;
+    float sinvalue = 0f;
     string[] textToType11={"Who would you like to meet with?"};
+    Vector2 triangleposition;
 
     void Start()
     {
@@ -83,12 +86,25 @@ public class popup : MonoBehaviour
             buffer += c;
             text.text = buffer;
             yield return new WaitForSeconds(.05f);
+                if (playerid.interactable)
+                {
+                    break;
+                }
         }
-        do
+            text.text = textToType;
+            sinvalue = Mathf.PI / 2f;
+            do
         {
-           yield return new WaitForSeconds(.01f); 
+                sinvalue++;
+                if (targetAlpha <= 1f)
+                {
+                    targetAlpha += .05f;
+                }
+
+                    yield return new WaitForSeconds(.01f);
         }
         while (!playerid.interactable);
+            targetAlpha = 0f;
         }
     }
 }
