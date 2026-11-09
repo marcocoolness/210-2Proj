@@ -5,17 +5,7 @@ public class Player : MonoBehaviour
 {
     private GameObject whirlpool;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
+   
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,12 +19,6 @@ public class Player : MonoBehaviour
             //Destroy(this.gameObject);
             SceneManager.LoadScene("BedRoom");
         }
-        if (collision.gameObject.CompareTag("Downstairs"))
-            {
-                //Destroy(this.gameObject);
-                SceneManager.LoadScene("DownStairs");
-                Debug.Log("Down");
-            }
         if (collision.gameObject.CompareTag("Outside"))
             {
             //Destroy(this.gameObject);
