@@ -38,11 +38,11 @@ GameObject Scene2;
             {
                 transform.position=new Vector2(-.6f,-4.48f);
                 Friend.transform.position=new Vector2(-.6f,3.88f);
-                SpriteRenderer GetColor=Scene1.GetComponent<SpriteRenderer>();
-                if (GetColor!=null) {
-                Color colorchange = new Color(GetColor.color.r, GetColor.color.g, GetColor.color.b, 1f);
-                    GetColor.color=colorchange;
-                }
+                //SpriteRenderer GetColor=Scene1.GetComponent<SpriteRenderer>();
+                //if (GetColor!=null) {
+                //Color colorchange = new Color(GetColor.color.r, GetColor.color.g, GetColor.color.b, 1f);
+                //    GetColor.color=colorchange;
+                //}
                 StartCoroutine(AutoMove1());
                 pop1.MoveIn();
             }
@@ -50,12 +50,12 @@ GameObject Scene2;
             {
                 transform.position = new Vector2(2.14f, -4.44f);
                 Friend.transform.position=new Vector2(2.14f,1.42f);
-                SpriteRenderer GetColor = Scene2.GetComponent<SpriteRenderer>();
-                if (GetColor != null)
-                {
-                    Color colorchange = new Color(GetColor.color.r, GetColor.color.g, GetColor.color.b, 1f);
-                    GetColor.color = colorchange;
-                }
+                //SpriteRenderer GetColor = Scene2.GetComponent<SpriteRenderer>();
+                //if (GetColor != null)
+                //{
+                //    Color colorchange = new Color(GetColor.color.r, GetColor.color.g, GetColor.color.b, 1f);
+                //    GetColor.color = colorchange;
+                //}
                 StartCoroutine(AutoMove2());
                 pop1.MoveIn();
             }
@@ -63,12 +63,12 @@ GameObject Scene2;
             {
                 transform.position = new Vector2(-6.79f, -2.84f);
                 Friend.transform.position=new Vector2(.71f,.82f);
-                SpriteRenderer GetColor = Scene3.GetComponent<SpriteRenderer>();
-                if (GetColor != null)
-                {
-                    Color colorchange = new Color(GetColor.color.r, GetColor.color.g, GetColor.color.b, 1f);
-                    GetColor.color = colorchange;
-                }
+                //SpriteRenderer GetColor = Scene3.GetComponent<SpriteRenderer>();
+                //if (GetColor != null)
+                //{
+                //    Color colorchange = new Color(GetColor.color.r, GetColor.color.g, GetColor.color.b, 1f);
+                //    GetColor.color = colorchange;
+                //}
                 StartCoroutine(AutoMove3());
                 pop1.MoveIn();
             }

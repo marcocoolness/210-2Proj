@@ -25,6 +25,8 @@ public class popup : MonoBehaviour
         text = GetComponentInChildren<TMP_Text>();
         if (sceneName == "OutsideScene")
         {
+            System.Array.Clear(textToType11, 0, textToType11.Length);
+            System.Array.Resize(ref textToType11, 5);
             textToType11[0]="Message1";
             textToType11[1]="Message1";
             textToType11[2]="Message1";
@@ -84,11 +86,28 @@ public class popup : MonoBehaviour
             text.text = buffer;
             yield return new WaitForSeconds(.05f);
         }
+        if (textref.Length!=1){
+        float triangleposy=-15f;
+        float alpha=0f;
+        GameObject Scene1=GameObject.Find("Triangle");
         do
         {
+           triangleposy-=.05f;
+           SpriteRenderer GetColor=Scene1.GetComponent<SpriteRenderer>();
+                if (GetColor!=null) {
+                Color colorchange = new Color(GetColor.color.r, GetColor.color.g, GetColor.color.b, alpha);
+                GetColor.color=colorchange;}
+            if (triangleposy<-20)
+            {
+triangleposy=-15f;
+            }
+            RectTransform position2 = Scene1.GetComponent<RectTransform>();
+        Vector2 posref2=position2.anchoredPosition;//Debug.Log(position.anchoredPosition);
+        position2.anchoredPosition = new Vector2(posref2.x, triangleposy);
            yield return new WaitForSeconds(.01f); 
         }
         while (!playerid.interactable);
         }
     }
+}
 }
