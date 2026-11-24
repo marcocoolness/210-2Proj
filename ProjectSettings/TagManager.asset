@@ -7,6 +7,11 @@ TagManager:
   - Whirlpool
   - Downstairs
   - BedRoom
+<<<<<<< Updated upstream
+=======
+  - Outside
+  - Sparkle
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
