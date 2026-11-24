@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 public class popup : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    RectTransform position;
+    RectTransform position,skillpos;
     float moveinypos = -40f;
     float moveoutypos = -80f;
     Vector2 posref;
     TMP_Text text;
     PlayerMovement playerid;
-    GameObject HiArcRef;
+    GameObject HiArcRef, StopCheck, Point, skillmeter;
     string[] textToType11={"Who would you like to meet with?"};
 
     void Start()
@@ -23,6 +23,10 @@ public class popup : MonoBehaviour
         posref=position.anchoredPosition;//Debug.Log(position.anchoredPosition);
         position.anchoredPosition = new Vector2(posref.x, moveoutypos);
         text = GetComponentInChildren<TMP_Text>();
+        StopCheck=GameObject.Find("pie");
+        Point=GameObject.Find("pointer");
+        skillmeter=GameObject.Find("skillcheck");
+        skillpos=skillmeter.GetComponent<RectTransform>();
         if (sceneName == "OutsideScene")
         {
             System.Array.Clear(textToType11, 0, textToType11.Length);
@@ -43,7 +47,9 @@ public class popup : MonoBehaviour
     // Update is called once per frame
     public void MoveIn()
     {
-          StartCoroutine(DelayedAction());
+        skillpos.anchoredPosition=new Vector2(0f,0f);
+        StartCoroutine(Skillcheck(1f));
+          //StartCoroutine(DelayedAction());
           //transform
     }
     public void MoveOut()
@@ -110,4 +116,29 @@ triangleposy=-15f;
         }
     }
 }
+IEnumerator Skillcheck(float Speed){
+    HiArcRef= GameObject.Find("Player");
+        if (HiArcRef!=null)
+        {
+            playerid=HiArcRef.GetComponent<PlayerMovement>();
+        }
+        RectTransform rectt = StopCheck.GetComponent<RectTransform>();
+        RectTransform rectt2 = Point.GetComponent<RectTransform>();
+        rectt.rotation= Quaternion.Euler(0f,0f,Random.Range(0f, 360f));
+        yield return new WaitForSeconds(.5f); 
+        float incre=0f;
+do
+        {
+           rectt2.rotation= Quaternion.Euler(0f,0f,incre);
+           yield return new WaitForSeconds(.01f); 
+           incre+=Speed;
+        }
+        while (!playerid.interactable);
+        if ((rectt2.rotation.z-15)%360f>=rectt.rotation.z&&(rectt2.rotation.z+15)%360f<=rectt.rotation.z){
+Debug.Log("Win");
+        }
+        else{
+            Debug.Log("Lose!");
+        }
+    }
 }
