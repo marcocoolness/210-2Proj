@@ -44,7 +44,7 @@ GameObject Scene2;
                 //    GetColor.color=colorchange;
                 //}
                 StartCoroutine(AutoMove1());
-                pop1.MoveIn();
+                StartCoroutine(Delay());
             }
             else if (scene11.optionScript == 2)
             {
@@ -57,7 +57,7 @@ GameObject Scene2;
                 //    GetColor.color = colorchange;
                 //}
                 StartCoroutine(AutoMove2());
-                pop1.MoveIn();
+                StartCoroutine(Delay());
             }
             else
             {
@@ -70,7 +70,7 @@ GameObject Scene2;
                 //    GetColor.color = colorchange;
                 //}
                 StartCoroutine(AutoMove3());
-                pop1.MoveIn();
+                StartCoroutine(Delay());
             }
         }
     }
@@ -141,5 +141,10 @@ GameObject Scene2;
         }
         while (posref.x <= .66f);
         transform.position = new Vector3(.66f, posref.y);
+    }
+    IEnumerator Delay()
+    {
+            yield return new WaitForSeconds(1f);
+        pop1.MoveIn();
     }
 }
